@@ -16,7 +16,14 @@ public class Transpose {
         printMatrix(matrix, rows, cols);
         
         System.out.println("Transpose Matrix:");
-        printMatrix(transpose(matrix, rows, cols), cols, rows);
+        int[][] transposed = transpose(matrix, rows, cols);
+        printMatrix(transposed, cols, rows);
+        
+        if (rows == cols) {
+            System.out.println("Trace: " + trace(matrix, rows));
+        } else {
+            System.out.println("Trace is not defined for non-square matrices.");
+        }
         
         sc.close();
     }
@@ -27,6 +34,13 @@ public class Transpose {
             for (int j = 0; j < cols; j++)
                 transposed[j][i] = matrix[i][j];
         return transposed;
+    }
+
+    private static int trace(int[][] matrix, int size) {
+        int trace = 0;
+        for (int i = 0; i < size; i++)
+            trace += matrix[i][i];
+        return trace;
     }
 
     private static void printMatrix(int[][] matrix, int rows, int cols) {
